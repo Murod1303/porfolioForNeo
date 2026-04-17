@@ -3,9 +3,9 @@ import { motion, useTransform } from "framer-motion";
 import { Sparkles, ArrowRight } from "lucide-react";
 import MagneticButton from "../ui/MagneticButton";
 import ScrollIndicator from "../shared/ScrollIndicator";
-import { NAME, ROLES, ANIMATION_VARIANTS } from "../../constants/data";
+import { NAME, ROLES } from "../../constants/data";
 
-const { letterVariants } = ANIMATION_VARIANTS;
+// const { letterVariants } = ANIMATION_VARIANTS;
 
 const HeroBackground: React.FC = () => (
   <motion.div
@@ -94,7 +94,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                         custom={charIndex}
                         initial="hidden"
                         animate="visible"
-                        variants={letterVariants}
+                        // variants={letterVariants}
                         className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
                         style={{
                           textShadow: "0 0 40px rgba(96, 165, 250, 0.3)",

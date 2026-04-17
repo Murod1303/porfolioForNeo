@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import type { MagneticButtonProps } from "../types";
+import { MagneticButtonProps } from "../../types";
 
 const MagneticButton: React.FC<MagneticButtonProps> = ({
   children,
@@ -23,7 +23,7 @@ const MagneticButton: React.FC<MagneticButtonProps> = ({
   }, []);
 
   const distance = Math.sqrt(
-    Math.pow(mouseX - buttonPos.x, 2) + Math.pow(mouseY - buttonPos.y, 2)
+    Math.pow(mouseX - buttonPos.x, 2) + Math.pow(mouseY - buttonPos.y, 2),
   );
   const magneticStrength = 30;
   const magneticRadius = 150;
