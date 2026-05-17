@@ -9,14 +9,36 @@ interface NavigationProps {
 
 const NAV_LINKS = ["Home", "About", "Projects", "Experience", "Contact", "Blog"];
 
+const NAV_HREF = (item: string) =>
+  item === "Blog" ? "/blog" : item === "Home" ? "/" : `/#${item.toLowerCase()}`;
+
 const Navigation: React.FC<NavigationProps> = ({ darkMode, setDarkMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = ["home", "about", "projects", "experience", "contact"];
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.4 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
@@ -46,15 +68,25 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, setDarkMode }) => {
 
             {/* Desktop Links — center */}
             <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
-              {NAV_LINKS.map((item) => (
-                <a
-                  key={item}
-                  href={item === "Blog" ? "/blog" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
-                  className="relative py-2 text-base font-semibold tracking-wide text-gray-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:ease-out"
-                >
-                  {item}
-                </a>
-              ))}
+              {NAV_LINKS.map((item) => {
+                const isActive = item !== "Blog" && activeSection === item.toLowerCase();
+                return (
+                  <a
+                    key={item}
+                    href={NAV_HREF(item)}
+                    className={`relative py-2 text-base font-semibold tracking-wide transition-colors duration-300
+                      after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px]
+                      after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 after:origin-left
+                      after:transition-transform after:duration-300 after:ease-out
+                      ${isActive
+                        ? "text-blue-600 dark:text-blue-400 after:scale-x-100"
+                        : "text-gray-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 after:scale-x-0 hover:after:scale-x-100"
+                      }`}
+                  >
+                    {item}
+                  </a>
+                );
+              })}
             </div>
 
             {/* Right side: theme toggle + hamburger */}
@@ -155,7 +187,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, setDarkMode }) => {
               {/* Drawer Header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 dark:border-slate-800">
                 <span className="text-xl font-extrabold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-                  MS
+                  neo13
                 </span>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
@@ -171,7 +203,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode, setDarkMode }) => {
                 {NAV_LINKS.map((item, i) => (
                   <motion.a
                     key={item}
-                    href={item === "Blog" ? "/blog" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
+                    href={NAV_HREF(item)}
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.06 }}

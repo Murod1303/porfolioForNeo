@@ -2,8 +2,7 @@ import type { Project, Skill, Experience, BlogPost } from "../types";
 
 export const ROLES = [
   "Frontend Developer",
-  "Fullstack Developer",
-  "UI/UX Engineer",
+  "Backend Developer",
   "Creative Developer",
 ];
 

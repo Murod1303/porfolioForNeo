@@ -26,7 +26,7 @@ const ExperienceSection: React.FC = () => (
           >
             <motion.div
               whileHover={{ scale: 1.2 }}
-              className="absolute left-6 w-5 h-5 bg-blue-600 rounded-full border-4 border-white dark:border-slate-950"
+              className="absolute left-6 w-5 h-5 bg-blue-600 rounded-full border-4 border-white dark:border-slate-900"
             />
             <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-slate-700">
               <div className="flex items-center gap-2 mb-2">

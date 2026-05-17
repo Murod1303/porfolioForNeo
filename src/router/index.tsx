@@ -5,6 +5,7 @@ import App from "../App";
 const Home = lazy(() => import("../pages/Home"));
 const Blog = lazy(() => import("../pages/Blog"));
 const Article = lazy(() => import("../pages/Article"));
+const Admin = lazy(() => import("../pages/Admin"));
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ export const router = createBrowserRouter([
         path: "blog/:id",
         element: <Article />,
       },
+      {
+        path: "admin",
+        element: <Admin />,
+      },
     ],
   },
 ]);
+
