@@ -3,7 +3,7 @@ import { useMotionValue, useSpring, useTransform } from "framer-motion";
 
 import HeroSection from "../../components/sections/HeroSection";
 import AboutSection from "../../components/sections/AboutSection";
-import ProjectsSection from "../../components/sections/ProjectsSection";
+// import ProjectsSection from "../../components/sections/ProjectsSection";
 import ExperienceSection from "../../components/sections/ExperienceSection";
 import ContactSection from "../../components/sections/ContactSection";
 import { ROLES } from "../../constants/data";
@@ -17,8 +17,16 @@ const Home = () => {
   const springConfig = { damping: 25, stiffness: 150 };
   const mouseXSpring = useSpring(mouseX, springConfig);
   const mouseYSpring = useSpring(mouseY, springConfig);
-  const parallaxX = useTransform(mouseXSpring, [0, window.innerWidth], [-20, 20]);
-  const parallaxY = useTransform(mouseYSpring, [0, window.innerHeight], [-20, 20]);
+  const parallaxX = useTransform(
+    mouseXSpring,
+    [0, window.innerWidth],
+    [-20, 20],
+  );
+  const parallaxY = useTransform(
+    mouseYSpring,
+    [0, window.innerHeight],
+    [-20, 20],
+  );
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -33,7 +41,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(
       () => setCurrentRole((prev) => (prev + 1) % ROLES.length),
-      3000
+      3000,
     );
     return () => clearInterval(interval);
   }, []);
@@ -47,7 +55,7 @@ const Home = () => {
         parallaxY={parallaxY}
       />
       <AboutSection />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       <ExperienceSection />
       <ContactSection />
     </>

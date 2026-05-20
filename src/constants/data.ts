@@ -58,22 +58,25 @@ export const SKILLS: Skill[] = [
 
 export const EXPERIENCE: Experience[] = [
   {
-    title: "Senior Frontend Developer",
-    company: "Tech Innovations Inc.",
-    period: "2022 - Present",
-    description: "Leading frontend development for enterprise applications",
+    title: "Frontend Developer",
+    company: "Freelancer",
+    period: "2025 - Present",
+    description:
+      "Developing admin panels, dashboards, CRM systems, and e-commerce platforms with optimized user experience.",
   },
   {
-    title: "Full Stack Developer",
-    company: "Digital Solutions Ltd.",
-    period: "2020 - 2022",
-    description: "Built scalable web applications using modern tech stack",
+    title: "Frontend Developer",
+    company: "Soliq-servis DUK",
+    period: "2024 - 2025",
+    description:
+      "Developing and maintaining frontend systems for tax and financial service platforms.",
   },
   {
-    title: "Junior Developer",
-    company: "StartUp Hub",
-    period: "2019 - 2020",
-    description: "Developed and maintained client websites and web apps",
+    title: "Frontend Developer",
+    company: "Brain academy",
+    period: "2022 - 2024",
+    description:
+      "Developed a modern e-commerce web application as part of a team project at Brain Academy",
   },
 ];
 
@@ -105,9 +108,12 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     id: "how-to-optimize-react",
     title: "How to optimize React applications in 2024",
-    description: "Learn the modern ways to keep your React applications fast and performant using the latest features.",
-    content: "Full content of the blog post goes here... In a real app this would be fetched from a CMS or Notion API.",
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
+    description:
+      "Learn the modern ways to keep your React applications fast and performant using the latest features.",
+    content:
+      "Full content of the blog post goes here... In a real app this would be fetched from a CMS or Notion API.",
+    image:
+      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
     date: "Oct 24, 2024",
     readTime: "5 min read",
     tags: ["React", "Performance"],
@@ -115,9 +121,12 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     id: "building-design-systems",
     title: "Building scalable Design Systems with Tailwind CSS",
-    description: "A comprehensive guide to creating maintainable and scalable design systems using Tailwind CSS.",
-    content: "Full content of the blog post goes here... In a real app this would be fetched from a CMS or Notion API.",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
+    description:
+      "A comprehensive guide to creating maintainable and scalable design systems using Tailwind CSS.",
+    content:
+      "Full content of the blog post goes here... In a real app this would be fetched from a CMS or Notion API.",
+    image:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
     date: "Nov 02, 2024",
     readTime: "8 min read",
     tags: ["UI/UX", "Tailwind"],
@@ -125,11 +134,14 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     id: "future-of-frontend",
     title: "The Future of Frontend Development",
-    description: "My thoughts on where frontend development is heading with the rise of AI and new frameworks.",
-    content: "Full content of the blog post goes here... In a real app this would be fetched from a CMS or Notion API.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+    description:
+      "My thoughts on where frontend development is heading with the rise of AI and new frameworks.",
+    content:
+      "Full content of the blog post goes here... In a real app this would be fetched from a CMS or Notion API.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
     date: "Nov 15, 2024",
     readTime: "4 min read",
     tags: ["Career", "AI"],
-  }
+  },
 ];
