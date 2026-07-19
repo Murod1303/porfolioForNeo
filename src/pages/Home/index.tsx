@@ -3,7 +3,7 @@ import { useMotionValue, useSpring, useTransform } from "framer-motion";
 
 import HeroSection from "../../components/sections/HeroSection";
 import AboutSection from "../../components/sections/AboutSection";
-import ProjectsSection from "../../components/sections/ProjectsSection";
+// import ProjectsSection from "../../components/sections/ProjectsSection";
 import ExperienceSection from "../../components/sections/ExperienceSection";
 import ContactSection from "../../components/sections/ContactSection";
 import { ROLES } from "../../constants/data";
@@ -55,7 +55,7 @@ const Home = () => {
         parallaxY={parallaxY}
       />
       <AboutSection />
-      <ProjectsSection />
+      {/* <ProjectsSection /> */}
       <ExperienceSection />
       <ContactSection />
     </>
