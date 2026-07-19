@@ -33,7 +33,9 @@ const AUTH_KEY = "neo13_admin_auth";
 
 function useAdminAuth() {
   const navigate = useNavigate();
-  const [authed, setAuthed] = useState(() => sessionStorage.getItem(AUTH_KEY) === "1");
+  const [authed, setAuthed] = useState(
+    () => sessionStorage.getItem(AUTH_KEY) === "1",
+  );
   const login = (pw: string) => {
     if (pw === ADMIN_PASSWORD) {
       sessionStorage.setItem(AUTH_KEY, "1");
@@ -51,7 +53,9 @@ function useAdminAuth() {
 }
 
 // ───────────────────────── Login Page ─────────────────────────
-const LoginPage: React.FC<{ onLogin: (pw: string) => boolean }> = ({ onLogin }) => {
+const LoginPage: React.FC<{ onLogin: (pw: string) => boolean }> = ({
+  onLogin,
+}) => {
   const [pw, setPw] = useState("");
   const [show, setShow] = useState(false);
   const [error, setError] = useState(false);
@@ -85,7 +89,10 @@ const LoginPage: React.FC<{ onLogin: (pw: string) => boolean }> = ({ onLogin }) 
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="admin-pw" className="text-sm font-medium text-slate-300">
+              <label
+                htmlFor="admin-pw"
+                className="text-sm font-medium text-slate-300"
+              >
                 Parol
               </label>
               <div className="relative">
@@ -108,7 +115,11 @@ const LoginPage: React.FC<{ onLogin: (pw: string) => boolean }> = ({ onLogin }) 
                   aria-label={show ? "Parolni yashir" : "Parolni ko'rsat"}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200 transition-colors"
                 >
-                  {show ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {show ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
                 </button>
               </div>
               <AnimatePresence>
@@ -151,7 +162,11 @@ const EMPTY_POST: Omit<BlogPost, "id"> = {
   description: "",
   content: "",
   image: "",
-  date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
+  date: new Date().toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }),
   readTime: "3 min read",
   tags: [],
 };
@@ -164,7 +179,9 @@ interface BlogFormProps {
 
 const BlogForm: React.FC<BlogFormProps> = ({ initial, onSave, onClose }) => {
   const isEdit = !!initial;
-  const [form, setForm] = useState<Omit<BlogPost, "id">>(initial ? { ...initial } : { ...EMPTY_POST });
+  const [form, setForm] = useState<Omit<BlogPost, "id">>(
+    initial ? { ...initial } : { ...EMPTY_POST },
+  );
   const [tagInput, setTagInput] = useState("");
 
   const set = (key: keyof typeof form, val: string | string[]) =>
@@ -178,11 +195,17 @@ const BlogForm: React.FC<BlogFormProps> = ({ initial, onSave, onClose }) => {
     setTagInput("");
   };
 
-  const removeTag = (t: string) => set("tags", form.tags.filter((x) => x !== t));
+  const removeTag = (t: string) =>
+    set(
+      "tags",
+      form.tags.filter((x) => x !== t),
+    );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const id = isEdit ? initial!.id : generateId(form.title) || Date.now().toString();
+    const id = isEdit
+      ? initial!.id
+      : generateId(form.title) || Date.now().toString();
     onSave({ id, ...form });
   };
 
@@ -210,7 +233,11 @@ const BlogForm: React.FC<BlogFormProps> = ({ initial, onSave, onClose }) => {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-slate-800">
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            {isEdit ? <Pencil className="w-5 h-5 text-blue-400" /> : <Plus className="w-5 h-5 text-green-400" />}
+            {isEdit ? (
+              <Pencil className="w-5 h-5 text-blue-400" />
+            ) : (
+              <Plus className="w-5 h-5 text-green-400" />
+            )}
             {isEdit ? "Postni tahrirlash" : "Yangi blog post"}
           </h2>
           <button
@@ -296,7 +323,9 @@ const BlogForm: React.FC<BlogFormProps> = ({ initial, onSave, onClose }) => {
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">O'qish vaqti</label>
+              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                O'qish vaqti
+              </label>
               <input
                 type="text"
                 value={form.readTime}
@@ -317,7 +346,9 @@ const BlogForm: React.FC<BlogFormProps> = ({ initial, onSave, onClose }) => {
                 type="text"
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                onKeyDown={(e) =>
+                  e.key === "Enter" && (e.preventDefault(), addTag())
+                }
                 placeholder="Teg yozing va Enter bosing"
                 className={inputClass}
               />
@@ -402,7 +433,9 @@ const PostCard: React.FC<{
     )}
     <div className="p-5">
       <div className="flex items-start justify-between gap-3 mb-2">
-        <h3 className="font-semibold text-white text-sm leading-snug line-clamp-2">{post.title}</h3>
+        <h3 className="font-semibold text-white text-sm leading-snug line-clamp-2">
+          {post.title}
+        </h3>
         <div className="flex items-center gap-1.5 shrink-0">
           <button
             onClick={onEdit}
@@ -420,11 +453,16 @@ const PostCard: React.FC<{
           </button>
         </div>
       </div>
-      <p className="text-xs text-slate-400 line-clamp-2 mb-3">{post.description}</p>
+      <p className="text-xs text-slate-400 line-clamp-2 mb-3">
+        {post.description}
+      </p>
       <div className="flex items-center justify-between">
         <div className="flex flex-wrap gap-1">
           {post.tags.slice(0, 3).map((t) => (
-            <span key={t} className="px-2 py-0.5 bg-slate-800 text-slate-300 text-xs rounded-full">
+            <span
+              key={t}
+              className="px-2 py-0.5 bg-slate-800 text-slate-300 text-xs rounded-full"
+            >
               {t}
             </span>
           ))}
@@ -487,7 +525,9 @@ const AdminPage: React.FC = () => {
               <ShieldCheck className="w-6 h-6 text-blue-400" />
               Blog Admin
             </h1>
-            <p className="text-slate-400 text-sm mt-1">{posts.length} ta post mavjud</p>
+            <p className="text-slate-400 text-sm mt-1">
+              {posts.length} ta post mavjud
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <motion.button
@@ -513,12 +553,26 @@ const AdminPage: React.FC = () => {
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
             { label: "Jami postlar", value: posts.length, color: "blue" },
-            { label: "Teglar", value: [...new Set(posts.flatMap((p) => p.tags))].length, color: "purple" },
-            { label: "So'nggi", value: posts[0]?.date ?? "—", color: "pink", text: true },
+            {
+              label: "Teglar",
+              value: [...new Set(posts.flatMap((p) => p.tags))].length,
+              color: "purple",
+            },
+            {
+              label: "So'nggi",
+              value: posts[0]?.date ?? "—",
+              color: "pink",
+              text: true,
+            },
           ].map(({ label, value, color, text }) => (
-            <div key={label} className={`bg-slate-900 border border-slate-800 rounded-2xl p-4`}>
+            <div
+              key={label}
+              className={`bg-slate-900 border border-slate-800 rounded-2xl p-4`}
+            >
               <p className="text-xs text-slate-500 mb-1">{label}</p>
-              <p className={`text-${color}-400 font-bold text-xl`}>{text ? String(value) : value}</p>
+              <p className={`text-${color}-400 font-bold text-xl`}>
+                {text ? String(value) : value}
+              </p>
             </div>
           ))}
         </div>
@@ -550,7 +604,10 @@ const AdminPage: React.FC = () => {
           <BlogForm
             initial={editPost}
             onSave={handleSave}
-            onClose={() => { setShowForm(false); setEditPost(undefined); }}
+            onClose={() => {
+              setShowForm(false);
+              setEditPost(undefined);
+            }}
           />
         )}
       </AnimatePresence>
@@ -578,7 +635,9 @@ const AdminPage: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">Postni o'chirish</h3>
-                  <p className="text-sm text-slate-400">Bu amalni qaytarib bo'lmaydi</p>
+                  <p className="text-sm text-slate-400">
+                    Bu amalni qaytarib bo'lmaydi
+                  </p>
                 </div>
               </div>
               <div className="flex gap-3">
